@@ -3,12 +3,12 @@ import React from 'react'
 function MovieDetails(props) {
   return (
     <div className='movie-details'>
-        {props.movies && props.movies.map(movie =>{
-            return <div>
-                <div key={movie.id}>{movie.title}</div>
-                <p>{movie.description}</p> 
+        {props.movie ? (
+            <div>
+                <h1>{props.movie.title}</h1>
+                <p>{props.movie.description}</p>
             </div>
-        })}
+        ) : null}
     </div>
   )
 }

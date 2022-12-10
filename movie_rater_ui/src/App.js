@@ -37,7 +37,7 @@ function App() {
         </div>
 
         <div>
-          <MovieDetails/>
+          <MovieDetails movie={selectedMovie}/>
         </div>
       </div>
     </div>
