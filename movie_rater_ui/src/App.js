@@ -2,6 +2,8 @@ import './App.css';
 import Header from './components/header/header';
 import { useState, useEffect } from 'react';
 import MovieList from './components/movies/movie-list';
+import MovieDetails from './components/movies/movie-details';
+
 
 function App() {
   const[movies, setMovies] = useState([])
@@ -25,13 +27,11 @@ function App() {
       <Header appName="Movie Rater" />
       <div className='layout'>
         <div>
-          {movies.map(movie =>{
-            return <h2 key={movie.id}>{movie.title}</h2>
-          })}
+          <MovieList movies={movies}/>
         </div>
 
         <div>
-          Movie Details
+          <MovieDetails/>
         </div>
       </div>
     </div>
