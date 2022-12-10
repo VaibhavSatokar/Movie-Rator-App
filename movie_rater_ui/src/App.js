@@ -6,7 +6,8 @@ import MovieDetails from './components/movies/movie-details';
 
 
 function App() {
-  const[movies, setMovies] = useState([])
+  const[movies, setMovies] = useState([]);
+  const[selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/movies/",{
@@ -20,6 +21,11 @@ function App() {
     .then(resp =>setMovies(resp))
     .catch(err => console.log(err));
   }, [])
+
+  const movieClicked = movie =>{
+    //console.log(movie)
+    setSelectedMovie(movie)
+  }
   
 
   return (
@@ -27,7 +33,7 @@ function App() {
       <Header appName="Movie Rater" />
       <div className='layout'>
         <div>
-          <MovieList movies={movies}/>
+          <MovieList movies={movies} movieClicked={movieClicked}/>
         </div>
 
         <div>
