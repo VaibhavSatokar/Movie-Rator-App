@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import MovieList from './components/movies/movie-list';
 
 function App() {
-  const[movies, setMovies] = useState(['Movie 1','Movie 2','Movie 3'])
+  const[movies, setMovies] = useState([])
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/movies/",{
@@ -26,7 +26,7 @@ function App() {
       <div className='layout'>
         <div>
           {movies.map(movie =>{
-            return <h2>{movie.title}</h2>
+            return <h2 key={movie.id}>{movie.title}</h2>
           })}
         </div>
 
