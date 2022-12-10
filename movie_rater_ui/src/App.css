@@ -28,3 +28,17 @@
 .orange{
   color : orange ;
 }
+
+.purple{ 
+  color : purple ;
+}
+
+.rate-container{
+  margin-top: 20px;
+  border-top: 2px solid purple;
+}
+
+.rate-container , .fa-star{
+  font-size: 1.8rem;
+  cursor: pointer;
+}
