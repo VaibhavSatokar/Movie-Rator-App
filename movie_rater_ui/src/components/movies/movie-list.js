@@ -2,7 +2,8 @@ import React from 'react'
 
 function MovieList() {
   return (
-    <div>
+    <div className='movie-list '>
+        Movie List     
     </div>
   )
 }
