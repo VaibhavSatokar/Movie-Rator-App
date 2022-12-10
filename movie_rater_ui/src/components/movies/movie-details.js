@@ -11,6 +11,20 @@ function MovieDetails(props) {
         setHighlighted(high);
     }
 
+    const rateClicked = rate => evt =>{
+        fetch(`http://127.0.0.1:8000/api/movies/${props.movie.id}/rate_movie/`,{
+            method:'POST',
+            headers : {
+                'Content-Type':'application/json',
+                'Authorization':'Token 625053af7b8ec3c1711c8002e14054b3a2f0263c'
+            },
+            body :JSON.stringify({stars: rate + 1})
+        })
+        .then(resp=>resp.json())
+        .then(resp =>console.log(resp))
+        .catch(err => console.log(err));
+    }
+
   return (
     <div className='movie-details'>
         {props.movie ? (
@@ -30,6 +44,7 @@ function MovieDetails(props) {
                         return <FontAwesomeIcon key={i} icon={faStar} className={highlighted > i-1 ? 'purple' : ''}
                         onMouseEnter = {highlighteRate(i)}
                         onMouseLeave = {highlighteRate(-1)}
+                        onClick={rateClicked(i)}
                         />
                     })
                     }
