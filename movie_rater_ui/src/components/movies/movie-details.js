@@ -42,9 +42,9 @@ function MovieDetails(props) {
 
 
   return (
-    <div className='movie-details'>
+    <React.Fragment>
         {props.movie ? (
-            <div>
+            <div className='movie-details'>
                 <h1>{props.movie.title}</h1>
                 <p>{props.movie.description}</p>
                 <FontAwesomeIcon icon={faStar} className={props.movie.avg_rating > 0 ? 'orange' : ''}/>
@@ -68,7 +68,7 @@ function MovieDetails(props) {
 
             </div>
         ) : null}
-    </div>
+    </React.Fragment>
   )
 }
 
