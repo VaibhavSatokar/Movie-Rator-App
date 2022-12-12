@@ -20,10 +20,26 @@ function MovieDetails(props) {
             },
             body :JSON.stringify({stars: rate + 1})
         })
-        .then(resp=>resp.json())
-        .then(resp =>console.log(resp))
+        .then(() =>getDetails())
         .catch(err => console.log(err));
     }
+
+
+    const getDetails = () =>{
+        fetch(`http://127.0.0.1:8000/api/movies/${props.movie.id}/`,{
+            method:'GET',
+            headers : {
+                'Content-Type':'application/json',
+                'Authorization':'Token 625053af7b8ec3c1711c8002e14054b3a2f0263c'
+            }
+        })
+        .then(resp=>resp.json())
+        .then(resp =>props.updateMovie(resp))
+        .catch(err => console.log(err));
+
+    }
+
+
 
   return (
     <div className='movie-details'>

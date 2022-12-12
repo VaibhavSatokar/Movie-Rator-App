@@ -24,7 +24,11 @@ function App() {
 
   const movieClicked = movie =>{
     //console.log(movie)
-    setSelectedMovie(movie)
+    setSelectedMovie(movie);
+  }
+
+  const loadMovie = movie =>{
+    setSelectedMovie(movie);
   }
   
 
@@ -37,7 +41,7 @@ function App() {
         </div>
 
         <div>
-          <MovieDetails movie={selectedMovie}/>
+          <MovieDetails movie={selectedMovie} updateMovie={loadMovie}/>
         </div>
       </div>
     </div>
