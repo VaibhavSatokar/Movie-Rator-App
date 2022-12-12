@@ -14,9 +14,9 @@ function MovieList(props) {
 
 
   return (
-    <div className='movie-list '>
+    <React.Fragment className='movie-list '>
         {props.movies && props.movies.map(movie =>{
-            return<div key={movie.id}>
+            return<div key={movie.id} className="movie-item">
                 <h2 onClick={movieClicked(movie)}>
                     {movie.title}
                 </h2>
@@ -25,7 +25,7 @@ function MovieList(props) {
 
             </div>
         })}  
-    </div>
+    </React.Fragment>
   )
 }
 
