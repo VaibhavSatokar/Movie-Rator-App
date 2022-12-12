@@ -35,6 +35,16 @@ function App() {
     setEditedMovie(movie)
     setSelectedMovie(null)
   }
+
+  const updatedMovie = movie =>{
+    const newMovies = movies.map(mov=>{
+      if (mov.id === movie.id){
+        return movie;
+      }
+      return mov;
+    })
+    setMovies(newMovies);
+  }
   
 
   return (
@@ -43,7 +53,7 @@ function App() {
       <div className='layout'>
           <MovieList movies={movies} movieClicked={loadMovie} editClicked={editClicked}/>
           <MovieDetails movie={selectedMovie} updateMovie={loadMovie}/>
-          {editedMovie ? (<MovieForm movie={editedMovie}/>) : null}
+          {editedMovie ? (<MovieForm movie={editedMovie} updatedMovie={updatedMovie}/>) : null}
       </div>
     </div>
   );
