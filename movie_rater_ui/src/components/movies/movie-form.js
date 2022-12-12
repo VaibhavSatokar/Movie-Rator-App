@@ -6,11 +6,18 @@ function MovieForm(props) {
     const [title, setTitle] = useState(props.movie.title);
     const [description, setDescription] = useState(props.movie.description);
 
+    const createClicked = () =>{
+        //console.log('Update Clicked')
+        API.createMovie({title : title, description : description})
+        .then(resp =>props.movieCreated(resp))
+        .catch(error => console.log(error));
+    }
+    
     const updateClicked = () =>{
         //console.log('Update Clicked')
         API.updateMovie(props.movie.id, {title : title, description : description})
-        .then(resp =>props.updatedMovie(resp))
-        .catch(err => console.log(err));
+        .then(resp =>props.movieCreated(resp))
+        .catch(error => console.log(error));
     }
 
   return (
@@ -25,7 +32,11 @@ function MovieForm(props) {
                 <textarea type='text' id='description' placeholder='Description'
                 value={description} onChange={evt=>setDescription(evt.target.value)}
                 ></textarea><br/>
-                <button type='submit' onClick={updateClicked}>Update</button>
+                {props.movie.id ? 
+                <button type='submit' onClick={updateClicked}>Update</button> :
+                <button type='submit' onClick={createClicked}>Create</button>
+                }
+                
             </div>
         ) : null}
     </React.Fragment>
