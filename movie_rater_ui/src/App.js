@@ -56,6 +56,10 @@ function App() {
     setMovies(newMovies)
   }
   
+  const removeClicked = movie => {
+    const newMovies = movies.filter(mov => mov.id !== movie.id);
+      setMovies(newMovies)
+  }
 
   return (
     <div className="App">
@@ -63,11 +67,20 @@ function App() {
       <div className='layout'>
         <div>
           <button onClick={newMovie}>New Movie</button>
-          <MovieList movies={movies} movieClicked={loadMovie} editClicked={editClicked}/>
+          <MovieList 
+          movies={movies} 
+          movieClicked={loadMovie} 
+          editClicked={editClicked}
+          removeClicked={removeClicked}/>
         </div>
-          <MovieDetails movie={selectedMovie} updateMovie={loadMovie}/>
+          <MovieDetails 
+          movie={selectedMovie} 
+          updateMovie={loadMovie}/>
+          
           {editedMovie ? 
-          (<MovieForm movie={editedMovie} updatedMovie={updatedMovie} movieCreated={movieCreated}/>) : null}
+          (<MovieForm movie={editedMovie} 
+          updatedMovie={updatedMovie} 
+          movieCreated={movieCreated}/>) : null}
       </div>
     </div>
   );
