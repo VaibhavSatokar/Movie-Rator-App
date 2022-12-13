@@ -79,11 +79,11 @@ h1{
   color: orange;
 }
 
-h1 .fa {
+h1 .fa-film {
   color: white;
   transform: rotate(30deg);
 }
-.fa-sign-out-alt {
+.fa-right-from-bracket {
   position: absolute;
   top: 20px;
   right: 20px;
