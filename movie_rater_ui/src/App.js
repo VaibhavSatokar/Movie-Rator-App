@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import MovieList from './components/movies/movie-list';
 import MovieDetails from './components/movies/movie-details';
 import MovieForm from './components/movies/movie-form';
+import { useCookies } from 'react-cookie';
 
 
 function App() {
@@ -11,18 +12,26 @@ function App() {
   const[selectedMovie, setSelectedMovie] = useState(null);
   const[editedMovie, setEditedMovie] = useState(null);
 
+  const [token] = useCookies(['mr-token']);
+
+  
+
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/movies/",{
       method:'GET',
       headers : {
         'Content-Type':'application/json',
-        'Authorization':'Token 625053af7b8ec3c1711c8002e14054b3a2f0263c'
+        'Authorization':`Token ${token['mr-token']}`
       }
     })
     .then(resp=>resp.json())
     .then(resp =>setMovies(resp))
     .catch(err => console.log(err));
   }, [])
+
+  useEffect(() => {
+    if(!token['mr-token']) window.location.href='/'
+  },[token])
 
   
 
