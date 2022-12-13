@@ -33,8 +33,6 @@ function App() {
     if(!token['mr-token']) window.location.href='/'
   },[token])
 
-  
-
   const loadMovie = movie =>{
     setSelectedMovie(movie);
     setEditedMovie(null);

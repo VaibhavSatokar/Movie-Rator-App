@@ -6,6 +6,8 @@ function Auth() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const[isLoginView, setIsLoginView] = useState(true);
+
     const [token, setToken] = useCookies(['mr-token']);
 
     useEffect(() => {
@@ -19,9 +21,16 @@ function Auth() {
         .catch(error => console.log(error));
     }
 
+    const signUpClicked = () =>{
+        API.registerUser({username,password})
+        .then(() =>signInClicked())
+        .catch(error => console.log(error));
+    }
+
 
   return (
     <div>
+        {isLoginView ? <h1>Sign In</h1> :<h1>Sign Up</h1>}
         <label htmlFor="username">Username</label> <br/>
         <input id="username" type="text" placeholder='username' value={username} 
         onChange={ evt => setUsername(evt.target.value)}/>
@@ -31,8 +40,15 @@ function Auth() {
         <input id="password" type="password" placeholder='password' value={password} 
         onChange={ evt => setPassword(evt.target.value)}/>
         <br/>
-
-        <button type='submit' onClick={signInClicked}>Sign In</button>     
+        
+        {isLoginView ? <button type='submit' onClick={signInClicked}>Sign In</button>
+        : <button type='submit' onClick={signUpClicked}>Sign Up</button>}
+        
+        {isLoginView ? 
+        <p>Don't have an Account !! <u onClick={()=>setIsLoginView(false)}>Sign Up</u></p> 
+        :<p>Already have an account !! <u onClick={()=>setIsLoginView(true)}>Sign In</u></p> }
+        
+           
     </div>
   )
 }
