@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import { TokenContext } from '../..';
 import API from '../../api-service';
 
@@ -6,7 +6,13 @@ function Auth() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const [token, setToken] = useContext(TokenContext);
+    const {token, setToken} = useContext(TokenContext);
+
+    useEffect(() => {
+        console.log(token);
+        if(token) window.location.href='/movies'
+    },[token])
+    
 
     const signInClicked = () =>{
         API.signInUser({username,password})
