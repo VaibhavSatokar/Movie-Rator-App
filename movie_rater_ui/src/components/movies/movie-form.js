@@ -21,7 +21,7 @@ function MovieForm(props) {
     const updateClicked = () =>{
         //console.log('Update Clicked')
         API.updateMovie(props.movie.id, {title : title, description : description})
-        .then(resp =>props.movieCreated(resp))
+        .then(resp =>props.updatedMovie(resp))
         .catch(error => console.log(error));
     }
 

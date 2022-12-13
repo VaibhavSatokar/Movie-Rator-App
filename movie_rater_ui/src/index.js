@@ -4,10 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {BrowserRouter, Routes,Route} from 'react-router-dom'
+import Auth from './components/auth/auth';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route  path="/" element={<Auth/>} />
+        <Route  path="/movies" element={<App/>} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
