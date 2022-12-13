@@ -1,9 +1,14 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilm} from '@fortawesome/free-solid-svg-icons'
 
 function Header(props) {
   return (
-    <div className='app-header'>
-      <h1><i>{props.appName}</i></h1>
+    <div>
+      <h1>
+        <FontAwesomeIcon icon={faFilm} />
+        <i>{props.appName}</i>
+      </h1>
     </div>
   )
 }

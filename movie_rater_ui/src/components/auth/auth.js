@@ -27,28 +27,31 @@ function Auth() {
         .catch(error => console.log(error));
     }
 
+    const isDisabled = username.length === 0 || password.length ===0;
 
   return (
-    <div>
+    <div className='App'>
+        <header className='App-header'>
         {isLoginView ? <h1>Sign In</h1> :<h1>Sign Up</h1>}
-        <label htmlFor="username">Username</label> <br/>
-        <input id="username" type="text" placeholder='username' value={username} 
-        onChange={ evt => setUsername(evt.target.value)}/>
-        <br/>
+        </header>
+        <div className='login-container'>
+            <label htmlFor="username">Username</label> <br/>
+            <input id="username" type="text" placeholder='username' value={username} 
+            onChange={ evt => setUsername(evt.target.value)}/>
+            <br/>
 
-        <label htmlFor="password">Password</label><br/>
-        <input id="password" type="password" placeholder='password' value={password} 
-        onChange={ evt => setPassword(evt.target.value)}/>
-        <br/>
-        
-        {isLoginView ? <button type='submit' onClick={signInClicked}>Sign In</button>
-        : <button type='submit' onClick={signUpClicked}>Sign Up</button>}
-        
-        {isLoginView ? 
-        <p>Don't have an Account !! <u onClick={()=>setIsLoginView(false)}>Sign Up</u></p> 
-        :<p>Already have an account !! <u onClick={()=>setIsLoginView(true)}>Sign In</u></p> }
-        
-           
+            <label htmlFor="password">Password</label><br/>
+            <input id="password" type="password" placeholder='password' value={password} 
+            onChange={ evt => setPassword(evt.target.value)}/>
+            <br/>
+            
+            {isLoginView ? <button type='submit' onClick={signInClicked} disabled={isDisabled}>Sign In</button>
+            : <button type='submit' onClick={signUpClicked} disabled={isDisabled}>Sign Up</button>}
+            
+            {isLoginView ? 
+            <p>Don't have an Account !! <u onClick={()=>setIsLoginView(false)}>Sign Up</u></p> 
+            :<p>Already have an account !! <u onClick={()=>setIsLoginView(true)}>Sign In</u></p> }
+        </div>   
     </div>
   )
 }
